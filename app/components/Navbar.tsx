@@ -49,7 +49,6 @@ const Navbar = () => {
                         Mone<span className='text-accent'>Tix</span>
                     </span>
                 </div>
-               
                 <div className='flex  space-x-4 items-center'>
                     {renderLinks("btn")}
                     <UserButton />

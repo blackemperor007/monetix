@@ -3,6 +3,42 @@
 import prisma from "@/lib/prisma";
 import { randomBytes } from "crypto";
 
+// export async function checkAndAddUser(email: string, name?: string) {
+//   if (!email) {
+//     throw new Error("Email requis");
+//   }
+
+//   try {
+//     const existingUser = await prisma.user.findUnique({
+//       where: { email },
+//     });
+
+//     if (existingUser) {
+//       console.log("Utilisateur déjà existant :", existingUser.email);
+//       return existingUser;
+//     }
+
+//     if (!name) {
+//       throw new Error("Nom requis pour créer un utilisateur");
+//     }
+
+//     const newUser = await prisma.user.create({
+//       data: {
+//         email,
+//         name,
+//       },
+//     });
+
+//     console.log("Utilisateur créé :", newUser.email);
+//     return newUser;
+
+//   } catch (error) {
+//     console.error("Erreur Prisma checkAndAddUser :", error);
+//     throw error; // IMPORTANT
+//   }
+// }
+
+
 export async function checkAndAddUser(email: string, name: string) {
     if (!email) return;
     try {
