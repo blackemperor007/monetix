@@ -46,7 +46,7 @@ const Navbar = () => {
                         <Layers className='h-6 w-6' />
                     </div>
                     <span className='ml-3 font-bold text-2xl'>
-                        Mone<span className='text-accent'>Tix</span>
+                        Mone<span className='text-accent bold'>Tix</span>
                     </span>
                 </div>
                 <div className='flex  space-x-4 items-center'>

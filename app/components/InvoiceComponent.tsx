@@ -1,5 +1,6 @@
 import { Invoice } from "@/type";
-import { CheckCircle, Clock, FileText, Link, SquareArrowOutUpRight, XCircle } from "lucide-react";
+import { CheckCircle, Clock, FileText, SquareArrowOutUpRight, XCircle } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 type InvoiceComponentProps = {
@@ -83,7 +84,7 @@ const InvoiceComponent: React.FC<InvoiceComponentProps> = ({invoice,index,}) => 
             <div className="uppercase text-sm">FACT-{invoice.id}</div>
           </div>
           <div>
-            <div className="stat-value">{calculateTotal().toFixed(2)} €</div>
+            <div className="stat-value">{calculateTotal().toFixed(2)} Fcfa</div>
           </div>
           <div className="stat-desc">{invoice.name}</div>
         </div>
