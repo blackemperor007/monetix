@@ -4,19 +4,32 @@ import Image from "next/image";
 import Wrapper from "./components/wrapper";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { createEmptyInvoice } from "./actions";
+import { createEmptyInvoice, getInvoicesByEmail } from "./actions";
 import { useUser } from "@clerk/nextjs";
 import confetti from "canvas-confetti";
+import { Invoice } from "@/type";
+import InvoiceComponent from "./components/InvoiceComponent";
 
 export default function Home() {
   const { user } = useUser()
   const [invoiceName, setInvoiceName] = useState("");
   const [isNameValid, setIsNameValid] = useState(true);
   const email = user?.primaryEmailAddress?.emailAddress as string
-  // const [invoices, setInvoices] = useState<Invoice[]>([]);
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
 
+  const fetchInvoices = async () => {
+    try {
+      const data = await getInvoicesByEmail(email)
+      if (data) {
+        setInvoices(data)
+      }
+    } catch (error) {
+      console.error("Erreur lors du chargement des factures", error);
+    }
+  }
+  
    useEffect(() => {
-    // fetchInvoices()
+    fetchInvoices()
   }, [email])
 
   useEffect(() => {
@@ -28,9 +41,9 @@ export default function Home() {
       if (email) {
         await createEmptyInvoice(email, invoiceName)
       }
-      // fetchInvoices()
+      fetchInvoices()
       setInvoiceName("")
-      const modal = document.getElementById('my_modal_3') as HTMLDialogElement
+      const modal = document.getElementById('my_modal_1') as HTMLDialogElement
       if (modal) {
         modal.close()
       }
@@ -63,13 +76,13 @@ export default function Home() {
               <Plus className="h-6 w-6" />
             </div>
           </div>
-          {/* {invoices.length > 0 && (
+          {invoices.length > 0 && (
             invoices.map((invoice, index) => (
               <div key={index}>
                 <InvoiceComponent invoice={invoice} index={index} />
               </div>
             ))
-          )} */}
+          )}
         </div>
         <dialog id="my_modal_1" className="modal">
           <div className="modal-box">
@@ -97,9 +110,8 @@ export default function Home() {
             </button>
             <div className="modal-action">
               <form method="dialog">
-                {/* if there is a button in form, it will close the modal */}
-                <button className="btn">Close</button>
-              </form>
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
             </div>
           </div>
         </dialog>
