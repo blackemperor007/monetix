@@ -1,15 +1,15 @@
 "use client"
 
 import { deleteInvoice, getInvoiceById, updateInvoice } from '@/app/actions'
-import InvoiceInfo from '@/app/components/InvoiceInfo'
-import InvoiceLines from '@/app/components/InvoiceLines'
-import InvoicePDF from '@/app/components/InvoicePDF'
-import VATControl from '@/app/components/VTAControle'
-import Wrapper from '@/app/components/wrapper'
 import { Invoice, Totals } from '@/type'
 import { Save, Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import Wrapper from '../../components/wrapper'
+import VATControl from '../../components/VTAControle'
+import InvoiceInfo from '../../components/InvoiceInfo'
+import InvoicePDF from '../../components/InvoicePDF'
+import InvoiceLines from '../../components/InvoiceLines'
 
 const page = ({ params }: { params: Promise<{ invoiceId: string }> }) => {
 

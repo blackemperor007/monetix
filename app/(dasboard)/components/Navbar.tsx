@@ -20,7 +20,10 @@ const Navbar = () => {
 
     useEffect(() => {
          if(user?.primaryEmailAddress?.emailAddress && user.fullName){
-            checkAndAddUser(user?.primaryEmailAddress?.emailAddress ,user.fullName )
+            checkAndAddUser(
+                user?.primaryEmailAddress?.emailAddress ,
+                user.fullName
+            )
          }
     } , [user])
 
